@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Share your hair goals and appointment details with Loc World before your visit."
+    />
+    <title>Book a Consultation | Loc World</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#" aria-label="Loc World home">
+          <span class="brand-mark" aria-hidden="true">L</span>
+          <span>LOC <span class="brand-light">WORLD</span></span>
+        </a>
+        <p class="header-note">Your hair journey starts here</p>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">WELCOME TO LOC WORLD</p>
+        <h1 id="page-title">Let's get to know your hair.</h1>
+        <p class="intro-copy">
+          Tell us a little about yourself, your appointment, and the look you have in mind.
+          Sharing photos or videos helps your loctician prepare for your visit.
+        </p>
+        <div class="intro-detail">
+          <span class="detail-icon" aria-hidden="true">✦</span>
+          <span>A little preparation makes for a better consultation.</span>
+        </div>
+      </section>
+
+      <section class="form-card" aria-labelledby="form-title">
+        <div class="form-heading">
+          <div>
+            <p class="eyebrow">CONSULTATION FORM</p>
+            <h2 id="form-title">Your appointment details</h2>
+          </div>
+          <p class="required-note"><span aria-hidden="true">*</span> Required</p>
+        </div>
+
+        <form id="consultation-form">
+          <fieldset>
+            <legend><span class="step-number">01</span> About you</legend>
+            <div class="field-grid">
+              <div class="field">
+                <label for="first-name">First name <span aria-hidden="true">*</span></label>
+                <input id="first-name" name="firstName" type="text" autocomplete="given-name" required />
+              </div>
+              <div class="field">
+                <label for="last-name">Last name <span aria-hidden="true">*</span></label>
+                <input id="last-name" name="lastName" type="text" autocomplete="family-name" required />
+              </div>
+              <div class="field">
+                <label for="date-of-birth">Date of birth <span aria-hidden="true">*</span></label>
+                <input id="date-of-birth" name="dateOfBirth" type="date" autocomplete="bday" required />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="step-number">02</span> How can we reach you?</legend>
+            <div class="field-grid">
+              <div class="field">
+                <label for="email">Email address <span aria-hidden="true">*</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+              </div>
+              <div class="field">
+                <label for="phone">Phone number <span class="optional">(optional)</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 555-0123" />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="step-number">03</span> When are you coming in?</legend>
+            <div class="field-grid">
+              <div class="field">
+                <label for="appointment-date">Preferred date <span aria-hidden="true">*</span></label>
+                <input id="appointment-date" name="appointmentDate" type="date" required />
+              </div>
+              <div class="field">
+                <label for="appointment-time">Preferred time <span aria-hidden="true">*</span></label>
+                <input id="appointment-time" name="appointmentTime" type="time" required />
+              </div>
+            </div>
+            <p class="field-hint">Your preferred date and time are a request, not a confirmed booking.</p>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="step-number">04</span> Tell us about your hair</legend>
+            <div class="field">
+              <label for="hair-goals">What would you like us to know? <span class="optional">(optional)</span></label>
+              <textarea
+                id="hair-goals"
+                name="hairGoals"
+                rows="5"
+                placeholder="Share your hair goals, current routine, or any questions for your loctician."
+              ></textarea>
+            </div>
+            <div class="field upload-field">
+              <label for="inspiration">Photos or videos <span class="optional">(optional)</span></label>
+              <label class="upload-box" for="inspiration">
+                <span class="upload-icon" aria-hidden="true">↑</span>
+                <span class="upload-title">Choose photos or videos to share</span>
+                <span class="upload-hint">Images and videos are welcome.</span>
+                <input
+                  id="inspiration"
+                  name="inspiration"
+                  type="file"
+                  accept="image/*,video/*"
+                  multiple
+                />
+              </label>
+              <p class="field-hint" id="file-list" aria-live="polite">No files selected.</p>
+            </div>
+          </fieldset>
+
+          <div class="form-footer">
+            <p class="privacy-note">
+              Your details and files stay on this device. This page is not connected to a booking
+              service, so nothing will be sent or stored.
+            </p>
+            <button type="submit">Check my details <span aria-hidden="true">→</span></button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <footer class="site-footer">
+        <p>Your hair is what makes you unique. We can't wait to meet you.</p>
+        <span>LOC WORLD</span>
+      </footer>
+    </main>
+
+    <script>
+      const fileInput = document.querySelector("#inspiration");
+      const fileList = document.querySelector("#file-list");
+      const form = document.querySelector("#consultation-form");
+      const formStatus = document.querySelector("#form-status");
+
+      fileInput.addEventListener("change", () => {
+        const files = Array.from(fileInput.files);
+        fileList.textContent = files.length
+          ? files.map((file) => file.name).join(", ")
+          : "No files selected.";
+      });
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        formStatus.textContent =
+          "Your required details are complete. This page is not connected to a booking service, so nothing has been sent.";
+      });
+    </script>
+  </body>
+</html>
